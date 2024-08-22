@@ -22,6 +22,13 @@ function Home() {
     (state: RootState) => state.categories.selectedCategories
   );
 
+
+  const minPriceRange = useSelector(
+    (state: RootState) => state.price.minPriceRange  );
+
+    const maxPriceRange = useSelector(
+      (state: RootState) => state.price.maxPriceRange  );
+
   const [products, setProducts] = useState<Product[] | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<Product[] | null>(
     null
@@ -57,18 +64,39 @@ function Home() {
   };
 
   useEffect(() => {
+
+    let filteredProduct: Product[] | null = null;
     if (selectedCategories.length === 0) {
       setFilteredProducts(null);
     } else {
-      const filteredProduct: Product[] | null = (products ?? []).filter(
+       filteredProduct= (products ?? []).filter(
         (prod) => {
           return selectedCategories.includes(prod.category);
         }
       );
 
-      setFilteredProducts(filteredProduct);
+      
     }
-  }, [selectedCategories]);
+
+
+    if (minPriceRange === 0 && maxPriceRange === 100){
+      setFilteredProducts(null);
+    }else{
+      if (filteredProduct === null ){
+        filteredProduct= (products ?? []).filter(
+          (prod) => {
+            return prod.price <= maxPriceRange && prod.price >= minPriceRange;
+          })
+      }else{
+        filteredProduct= (filteredProduct ?? []).filter(
+          (prod) => {
+            return  prod.price <= maxPriceRange && prod.price >= minPriceRange;
+          })
+      }
+    }
+
+    setFilteredProducts(filteredProduct);
+  }, [selectedCategories, minPriceRange, maxPriceRange]);
 
   const totalPages =
     filteredProducts !== null

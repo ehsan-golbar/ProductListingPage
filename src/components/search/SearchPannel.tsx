@@ -1,11 +1,13 @@
-import {useState } from "react";
+import { useState } from "react";
 import { Form, Stack } from "react-bootstrap";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
-import { AppDispatch } from "../../store/Store";
-import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../store/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCategory } from "../../store/slices/CategorySlice";
 import {
-  toggleCategory,
-} from "../../store/slices/CategorySlice";
+  setMaxPriceRange,
+  setMinPriceRange,
+} from "../../store/slices/PriceSlice";
 
 interface FilterItem {
   type: FormCheckType; // Ensuring type is one of the allowed FormCheckType
@@ -15,9 +17,14 @@ interface FilterItem {
 function SearchPannel() {
   const dispatch: AppDispatch = useDispatch();
   // const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
-
-  const [minPriceRange, setMinPriceRange] = useState<number>(50); // Default value
-  const [maxPriceRange, setMaxPriceRange] = useState<number>(80); // Default value
+  const minPriceRange = useSelector(
+    (state: RootState) => state.price.minPriceRange
+  );
+  const maxPriceRange = useSelector(
+    (state: RootState) => state.price.maxPriceRange
+  );
+  // const [minPriceRange, setMinPriceRange] = useState<number>(50); // Default value
+  // const [maxPriceRange, setMaxPriceRange] = useState<number>(80); // Default value
 
   //   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
   //     new Set()
@@ -26,20 +33,20 @@ function SearchPannel() {
   const handleMinRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMinPrice = parseInt(e.target.value, 10);
     if (newMinPrice < maxPriceRange) {
-      setMinPriceRange(newMinPrice);
+      dispatch(setMinPriceRange(newMinPrice));
     } else {
       // If the new min price is greater than the max price, update both
-      setMinPriceRange(maxPriceRange - 1);
+      dispatch(setMinPriceRange(maxPriceRange - 1));
     }
   };
 
   const handleMaxRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMaxPrice = parseInt(e.target.value, 10);
     if (newMaxPrice > minPriceRange) {
-      setMaxPriceRange(newMaxPrice);
+      dispatch(setMaxPriceRange(newMaxPrice));
     } else {
       // If the new max price is less than the min price, update both
-      setMaxPriceRange(minPriceRange + 1);
+      dispatch(setMaxPriceRange(minPriceRange + 1));
     }
   };
 
