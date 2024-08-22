@@ -66,6 +66,7 @@ function Home() {
         key={number}
         active={number === active}
         onClick={() => handlePageChange(number)}
+        
       >
         {number}
       </Pagination.Item>
@@ -74,7 +75,7 @@ function Home() {
 
   return (
     <>
-      <Stack>
+      <Stack className="mt-4">
         {/* <Stack
         direction="horizontal"
         gap={3}
@@ -93,6 +94,7 @@ function Home() {
                 <Row
                   key={rowIndex}
                   className="d-flex justify-content-center align-items-start  mb-4"
+                 
                 >
                   {chunk.map((prod, colIndex) => {
                     return (
@@ -106,7 +108,7 @@ function Home() {
             })}
         </Container>
 
-        <Pagination>{items}</Pagination>
+        <Pagination className=" mb-3 d-flex justify-content-center">{items}</Pagination>
       </Stack>
     </>
   );
