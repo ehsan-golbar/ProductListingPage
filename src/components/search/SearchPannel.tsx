@@ -1,16 +1,89 @@
-import { Stack } from "react-bootstrap";
+import { useState } from "react";
+import { Form, Stack } from "react-bootstrap";
+import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 
-function SearchPannel() {
-    return(
-<>
-<Stack >
-
-        <p>slam</p>
-</Stack>
-
-</>
-
-    )
+interface FilterItem {
+  type: FormCheckType; // Ensuring type is one of the allowed FormCheckType
+  cat: string;
 }
 
-export default SearchPannel
+function SearchPannel() {
+  const [minPriceRange, setMinPriceRange] = useState<number>(50); // Default value
+  const [maxPriceRange, setMaxPriceRange] = useState<number>(80); // Default value
+
+  const handleMinRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMinPrice = parseInt(e.target.value, 10);
+    if (newMinPrice <= maxPriceRange) {
+      setMinPriceRange(newMinPrice);
+    } else {
+      // If the new min price is greater than the max price, update both
+      setMinPriceRange(maxPriceRange - 1);
+    }
+  };
+
+  const handleMaxRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMaxPrice = parseInt(e.target.value, 10);
+    if (newMaxPrice >= minPriceRange) {
+      setMaxPriceRange(newMaxPrice);
+    } else {
+      // If the new max price is less than the min price, update both
+      setMaxPriceRange(minPriceRange + 1);
+    }
+  };
+
+  const filterList: FilterItem[] = [
+    { type: "checkbox", cat: "electronics" },
+    { type: "checkbox", cat: "jewelery" },
+    { type: "checkbox", cat: "men's clothing" },
+    { type: "checkbox", cat: "women's clothing" },
+  ];
+  return (
+    <>
+      <Stack
+        className="d-flex justify-content-start"
+        style={{ backgroundColor: "#d1d0d0", height: "100vw" }}
+      >
+        <p>Filter</p>
+
+        <Stack style={{ marginLeft: "1rem" }}>
+          <p>Category</p>
+
+          <Form style={{ marginLeft: "2rem" }}>
+            {filterList.map((item) => (
+              <div key={`default-${item.type}`} className="mb-3">
+                <Form.Check // prettier-ignore
+                  type={item.type}
+                  id={`default-${item.type}`}
+                  label={`${item.cat}`}
+                />
+              </div>
+            ))}
+          </Form>
+
+          <p>Price</p>
+
+          <Stack style={{ marginLeft: "2rem", marginRight: "2rem" }}>
+            <Form.Label>min : ${minPriceRange}</Form.Label>
+            <Form.Range
+              value={minPriceRange}
+              onChange={handleMinRangeChange}
+              min={0}
+              max={100} // Assuming the max price is 100, adjust this according to your needs
+            />
+
+            <Form.Label>max : ${maxPriceRange}</Form.Label>
+            <Form.Range
+              // disabled
+              value={maxPriceRange}
+              onChange={handleMaxRangeChange}
+              min={0}
+              max={100} // Assuming the max price is 100, adjust this according to your needs
+            />
+          </Stack>
+        </Stack>
+      </Stack>
+    </>
+  );
+}
+
+export default SearchPannel;
