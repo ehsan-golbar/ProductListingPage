@@ -22,7 +22,7 @@ function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://fakestoreapi.com/products?limit=6");
+      const res = await fetch("https://fakestoreapi.com/products?limit=20");
 
       if (!res.ok) {
         throw new Error(`Failed to fetch: ${res.statusText}`);
@@ -47,18 +47,26 @@ function Home() {
     return null;
   };
 
-  const productChunks = chunkArray(products, 3); // Create chunks of 3 products
+  const totalPages = products && Math.ceil(products.length / 6);
 
+  // Get the items to display on the current page
+  const startIndex = (currentPage - 1) * 6;
+  const currentItems = products && products.slice(startIndex, startIndex + 6);
 
+  const productChunks = chunkArray(currentItems, 3); // Create chunks of 3 products
 
-  const handlePageChange = (num : number) =>{
-        setCurrentPage(num)
-  }
+  const handlePageChange = (num: number) => {
+    setCurrentPage(num);
+  };
   let active = currentPage;
   let items = [];
-  for (let number = 1; number <= 5; number++) {
+  for (let number = 1; number <= (totalPages ? totalPages : 1); number++) {
     items.push(
-      <Pagination.Item key={number} active={number === active} onClick={() => handlePageChange(number)}>
+      <Pagination.Item
+        key={number}
+        active={number === active}
+        onClick={() => handlePageChange(number)}
+      >
         {number}
       </Pagination.Item>
     );
@@ -66,9 +74,8 @@ function Home() {
 
   return (
     <>
-
-    <Stack>
-      {/* <Stack
+      <Stack>
+        {/* <Stack
         direction="horizontal"
         gap={3}
         className="d-flex justify-content-center align-items-start"
@@ -79,30 +86,27 @@ function Home() {
           })}
       </Stack> */}
 
-      <Container>
-        {productChunks &&
-          productChunks.map((chunk, rowIndex) => {
-            return (
-              <Row
-                key={rowIndex}
-                className="flex justify-content-center align-items-start  mb-4"
-              >
-                {chunk.map((prod, colIndex) => {
-                  return (
-                    <Col key={colIndex}>
-                      <ProductCard product={prod}></ProductCard>
-                    </Col>
-                  );
-                })}
-              </Row>
-            );
-          })}
-      </Container>
+        <Container>
+          {productChunks &&
+            productChunks.map((chunk, rowIndex) => {
+              return (
+                <Row
+                  key={rowIndex}
+                  className="d-flex justify-content-center align-items-start  mb-4"
+                >
+                  {chunk.map((prod, colIndex) => {
+                    return (
+                      <Col key={colIndex}>
+                        <ProductCard product={prod}></ProductCard>
+                      </Col>
+                    );
+                  })}
+                </Row>
+              );
+            })}
+        </Container>
 
-
-
-      <Pagination>{items}</Pagination>
-
+        <Pagination>{items}</Pagination>
       </Stack>
     </>
   );
