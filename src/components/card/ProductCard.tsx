@@ -44,14 +44,14 @@ function ProductCard(props : MyComponentProps) {
 
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={props.product?.image} />
-      <Card.Body>
+    <Card style={{ width: '18rem' , height:'40rem' }} >
+      <Card.Img variant="top" src={props.product?.image} style={{ width: '300px', height: '400px', padding: '2rem',objectFit: 'contain' }} />
+      <Card.Body className="d-flex flex-column align-items-center text-center mb-4">
         <Card.Title>{props.product && props.product.title}</Card.Title>
         <Card.Text>
-{props.product && props.product.description}
+{props.product && props.product.price}
         </Card.Text>
-        <Button variant="primary" >more</Button>
+        <Button variant="primary"  >more</Button>
       </Card.Body>
     </Card>
   );

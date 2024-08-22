@@ -1,4 +1,4 @@
-import { Stack } from "react-bootstrap";
+import { Col, Container, Row} from "react-bootstrap";
 import ProductCard from "../card/ProductCard";
 import { useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://fakestoreapi.com/products?limit=3");
+      const res = await fetch("https://fakestoreapi.com/products?limit=6");
 
       if (!res.ok) {
         throw new Error(`Failed to fetch: ${res.statusText}`);
@@ -34,14 +34,53 @@ function Home() {
     fetchProducts();
   }, []);
 
+
+  const chunkArray = (arr: Product[] | null, chunkSize: number) => {
+
+    if(arr !== null)
+{    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;}
+    return null;
+  };
+
+  const productChunks = chunkArray(products, 3); // Create chunks of 3 products
+
   return (
     <>
-      <Stack direction="horizontal" gap={3}>
+      {/* <Stack
+        direction="horizontal"
+        gap={3}
+        className="d-flex justify-content-center align-items-start"
+      >
         {products &&
           products.map((prod, index) => {
-            return (<ProductCard key={index} product={prod}></ProductCard>)
+            return <ProductCard key={index} product={prod}></ProductCard>;
           })}
-      </Stack>
+      </Stack> */}
+
+      <Container >
+
+        {productChunks && productChunks.map((chunk, rowIndex) => {
+            return(
+                <Row key={rowIndex}  className="flex justify-content-center align-items-start  mb-4">
+          {chunk.map((prod, colIndex) => {
+             
+                return (
+                  <Col key={colIndex}>
+                    <ProductCard product={prod}></ProductCard>
+                  </Col>
+                );
+            })}
+                </Row>
+            )
+        }) }
+      
+
+      
+      </Container>
     </>
   );
 }
