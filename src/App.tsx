@@ -1,19 +1,25 @@
 
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Col, Container, Row } from 'react-bootstrap'
+// import { Col, Container, Row } from 'react-bootstrap'
+import ProductCard from './components/card/ProductCard'
+import { useEffect } from 'react'
+
 
 function App() {
 
+
+
+
+
+
   return (
     <>
-      <Container>
-        <Row>
-          <Col>
-          Helo world
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        <ProductCard>
+          
+        </ProductCard>
+      </div>
     </>
   )
 }
