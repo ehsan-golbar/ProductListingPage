@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { Form, Stack } from "react-bootstrap";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
+import { AppDispatch } from "../../store/Store";
+import { useDispatch } from "react-redux";
+import {
+  toggleCategory,
+} from "../../store/slices/CategorySlice";
 
 interface FilterItem {
   type: FormCheckType; // Ensuring type is one of the allowed FormCheckType
@@ -8,12 +13,15 @@ interface FilterItem {
 }
 
 function SearchPannel() {
+  const dispatch: AppDispatch = useDispatch();
+  // const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
+
   const [minPriceRange, setMinPriceRange] = useState<number>(50); // Default value
   const [maxPriceRange, setMaxPriceRange] = useState<number>(80); // Default value
 
-  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
-    new Set()
-  );
+  //   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
+  //     new Set()
+  //   );
 
   const handleMinRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMinPrice = parseInt(e.target.value, 10);
@@ -43,20 +51,12 @@ function SearchPannel() {
   ];
 
   const handleCategoryChange = (cat: string) => {
-    setSelectedCategories((prevSelectedCategories) => {
-      const updatedCategories = new Set(prevSelectedCategories);
-      if (updatedCategories.has(cat)) {
-        updatedCategories.delete(cat);
-      } else {
-        updatedCategories.add(cat);
-      }
-      return updatedCategories;
-    });
+    dispatch(toggleCategory(cat));
   };
 
-//   useEffect(()=>{
-//         console.log(selectedCategories)
-//   }, [selectedCategories])
+  //   useEffect(()=>{
+  //         console.log(selectedCategories)
+  //   }, [selectedCategories])
   return (
     <>
       <Stack

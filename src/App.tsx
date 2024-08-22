@@ -6,11 +6,14 @@ import {  Stack } from "react-bootstrap";
 import Header from "./components/header/Header";
 import SearchPannel from "./components/search/SearchPannel";
 import SortPannel from "./components/sort/SortPannel";
+import { Provider } from "react-redux";
+import { store } from "./store/Store";
 // import { useEffect } from 'react'
 
 function App() {
   return (
     <>
+    <Provider store={store}> 
       <Header></Header>
 
       <Stack style={{ width: "100vw" }}>
@@ -32,6 +35,8 @@ function App() {
           </div>
         </div>
       </Stack>
+
+      </Provider>
 
     </>
   );
