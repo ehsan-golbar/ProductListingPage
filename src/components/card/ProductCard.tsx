@@ -22,25 +22,6 @@ interface MyComponentProps {
 function ProductCard(props : MyComponentProps) {
 
 
-  // const [data, setData ]  = useState<Product | null>(null)
-
-// useEffect( () =>{
-//   const fetchItem = async () => {
-//     const res =  await  fetch('https://fakestoreapi.com/products/1')
-//      const  data : Product = await res.json()
-//      console.log (data)
-//      setData(data)
-//    } 
-
-
-//    fetchItem()
-// }, [])
-  // const fetchItem = async () => {
-  //   const res =  await  fetch('https://fakestoreapi.com/products/1')
-  //    const  data : Product = await res.json()
-  //    console.log (data)
-  //    setData(data)
-  //  } 
 
 
   return (
@@ -49,7 +30,7 @@ function ProductCard(props : MyComponentProps) {
       <Card.Body className="d-flex flex-column align-items-center text-center mb-4">
         <Card.Title>{props.product && props.product.title}</Card.Title>
         <Card.Text>
-{props.product && props.product.price}
+${props.product && props.product.price}
         </Card.Text>
         <Button variant="primary"  >more</Button>
       </Card.Body>
