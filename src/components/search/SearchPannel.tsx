@@ -70,10 +70,10 @@ function SearchPannel() {
 
           <Form style={{ marginLeft: "2rem" }}>
             {filterList.map((item) => (
-              <div key={`default-${item.type}`} className="mb-3">
+              <div key={`default-${item.cat}`} className="mb-3">
                 <Form.Check // prettier-ignore
                   type={item.type}
-                  id={`default-${item.type}`}
+                  id={`default-${item.cat}`}
                   label={`${item.cat}`}
                   onChange={() => handleCategoryChange(item.cat)}
                 />

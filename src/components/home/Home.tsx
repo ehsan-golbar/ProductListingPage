@@ -117,15 +117,15 @@ function Home() {
 
         <Container>
           {productChunks &&
-            productChunks.map((chunk, rowIndex) => {
+            productChunks.map((chunk) => {
               return (
                 <Row
-                  key={rowIndex}
+                  key={chunk[0].id}
                   className="d-flex justify-content-center align-items-start  mb-4"
                 >
-                  {chunk.map((prod, colIndex) => {
+                  {chunk.map((prod) => {
                     return (
-                      <Col key={colIndex}>
+                      <Col key={prod.id}>
                         <ProductCard product={prod}></ProductCard>
                       </Col>
                     );
