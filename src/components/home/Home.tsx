@@ -92,7 +92,7 @@ function Home() {
             productChunks.map((chunk, rowIndex) => {
               return (
                 <Row
-                  key={rowIndex}
+                  key={rowIndex }
                   className="d-flex justify-content-center align-items-start  mb-4"
                  
                 >

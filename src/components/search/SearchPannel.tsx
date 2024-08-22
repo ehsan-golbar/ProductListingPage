@@ -13,7 +13,7 @@ function SearchPannel() {
 
   const handleMinRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMinPrice = parseInt(e.target.value, 10);
-    if (newMinPrice <= maxPriceRange) {
+    if (newMinPrice < maxPriceRange) {
       setMinPriceRange(newMinPrice);
     } else {
       // If the new min price is greater than the max price, update both
@@ -23,7 +23,7 @@ function SearchPannel() {
 
   const handleMaxRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMaxPrice = parseInt(e.target.value, 10);
-    if (newMaxPrice >= minPriceRange) {
+    if (newMaxPrice > minPriceRange) {
       setMaxPriceRange(newMaxPrice);
     } else {
       // If the new max price is less than the min price, update both
@@ -41,11 +41,11 @@ function SearchPannel() {
     <>
       <Stack
         className="d-flex justify-content-start"
-        style={{ backgroundColor: "#d1d0d0", height: "100vw" }}
+        style={{ backgroundColor: "#d1d0d0", height: "100vh", gap : 0 }}
       >
         <p>Filter</p>
 
-        <Stack style={{ marginLeft: "1rem" }}>
+        <Stack style={{ marginLeft: "1rem" }} gap={3}>
           <p>Category</p>
 
           <Form style={{ marginLeft: "2rem" }}>
@@ -62,7 +62,7 @@ function SearchPannel() {
 
           <p>Price</p>
 
-          <Stack style={{ marginLeft: "2rem", marginRight: "2rem" }}>
+          <Stack style={{ marginLeft: "2rem", marginRight: "2rem" , padding: 0, height: 'auto', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
             <Form.Label>min : ${minPriceRange}</Form.Label>
             <Form.Range
               value={minPriceRange}
@@ -81,6 +81,10 @@ function SearchPannel() {
             />
           </Stack>
         </Stack>
+
+
+
+        {/* <p>Sort</p> */}
       </Stack>
     </>
   );

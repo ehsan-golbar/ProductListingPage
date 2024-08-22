@@ -5,6 +5,7 @@ import Home from "./components/home/Home";
 import {  Stack } from "react-bootstrap";
 import Header from "./components/header/Header";
 import SearchPannel from "./components/search/SearchPannel";
+import SortPannel from "./components/sort/SortPannel";
 // import { useEffect } from 'react'
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           <div className="flex-grow-1" style={{ width: "75%" }}>
             <Stack>
               {/* Content for the second Stack */}
+
+
+              <SortPannel></SortPannel>
               <Home></Home>
             </Stack>
           </div>
