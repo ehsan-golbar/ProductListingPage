@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Stack } from "react-bootstrap";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 
@@ -10,6 +10,10 @@ interface FilterItem {
 function SearchPannel() {
   const [minPriceRange, setMinPriceRange] = useState<number>(50); // Default value
   const [maxPriceRange, setMaxPriceRange] = useState<number>(80); // Default value
+
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
+    new Set()
+  );
 
   const handleMinRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMinPrice = parseInt(e.target.value, 10);
@@ -37,11 +41,27 @@ function SearchPannel() {
     { type: "checkbox", cat: "men's clothing" },
     { type: "checkbox", cat: "women's clothing" },
   ];
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategories((prevSelectedCategories) => {
+      const updatedCategories = new Set(prevSelectedCategories);
+      if (updatedCategories.has(cat)) {
+        updatedCategories.delete(cat);
+      } else {
+        updatedCategories.add(cat);
+      }
+      return updatedCategories;
+    });
+  };
+
+//   useEffect(()=>{
+//         console.log(selectedCategories)
+//   }, [selectedCategories])
   return (
     <>
       <Stack
         className="d-flex justify-content-start"
-        style={{ backgroundColor: "#d1d0d0", height: "100vh", gap : 0 }}
+        style={{ backgroundColor: "#d1d0d0", height: "100vh", gap: 0 }}
       >
         <p>Filter</p>
 
@@ -55,6 +75,7 @@ function SearchPannel() {
                   type={item.type}
                   id={`default-${item.type}`}
                   label={`${item.cat}`}
+                  onChange={() => handleCategoryChange(item.cat)}
                 />
               </div>
             ))}
@@ -62,7 +83,17 @@ function SearchPannel() {
 
           <p>Price</p>
 
-          <Stack style={{ marginLeft: "2rem", marginRight: "2rem" , padding: 0, height: 'auto', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+          <Stack
+            style={{
+              marginLeft: "2rem",
+              marginRight: "2rem",
+              padding: 0,
+              height: "auto",
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+            }}
+          >
             <Form.Label>min : ${minPriceRange}</Form.Label>
             <Form.Range
               value={minPriceRange}
@@ -81,8 +112,6 @@ function SearchPannel() {
             />
           </Stack>
         </Stack>
-
-
 
         {/* <p>Sort</p> */}
       </Stack>
