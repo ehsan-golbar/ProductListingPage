@@ -2,7 +2,7 @@
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 // import { Col, Container, Row } from 'react-bootstrap'
-import ProductCard from './components/card/ProductCard'
+import Home from './components/home/Home'
 // import { useEffect } from 'react'
 
 
@@ -16,9 +16,11 @@ function App() {
   return (
     <>
       <div>
-        <ProductCard>
+        {/* <ProductCard>
           
-        </ProductCard>
+        </ProductCard> */}
+
+        <Home></Home>
       </div>
     </>
   )

@@ -16,23 +16,25 @@ interface Product {
   };
 }
 
-
-function ProductCard() {
-
-
-  const [data, setData ]  = useState<Product | null>(null)
-
-useEffect( () =>{
-  const fetchItem = async () => {
-    const res =  await  fetch('https://fakestoreapi.com/products/1')
-     const  data : Product = await res.json()
-     console.log (data)
-     setData(data)
-   } 
+interface MyComponentProps {
+  product : Product
+}
+function ProductCard(props : MyComponentProps) {
 
 
-   fetchItem()
-}, [])
+  // const [data, setData ]  = useState<Product | null>(null)
+
+// useEffect( () =>{
+//   const fetchItem = async () => {
+//     const res =  await  fetch('https://fakestoreapi.com/products/1')
+//      const  data : Product = await res.json()
+//      console.log (data)
+//      setData(data)
+//    } 
+
+
+//    fetchItem()
+// }, [])
   // const fetchItem = async () => {
   //   const res =  await  fetch('https://fakestoreapi.com/products/1')
   //    const  data : Product = await res.json()
@@ -43,11 +45,11 @@ useEffect( () =>{
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={data?.image} />
+      <Card.Img variant="top" src={props.product?.image} />
       <Card.Body>
-        <Card.Title>{data && data.title}</Card.Title>
+        <Card.Title>{props.product && props.product.title}</Card.Title>
         <Card.Text>
-{data && data.description}
+{props.product && props.product.description}
         </Card.Text>
         <Button variant="primary" >more</Button>
       </Card.Body>
