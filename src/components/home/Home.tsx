@@ -184,7 +184,7 @@ function Home() {
           </Suspense>
         </Container>
 
-        <Pagination className="mb-3 d-flex justify-content-center " >
+        <Pagination className="mb-3 d-flex justify-content-center ">
           {items}
         </Pagination>
       </Stack>
