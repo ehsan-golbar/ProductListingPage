@@ -1,17 +1,17 @@
 // src/redux/slices/sortPanelSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 interface SortState {
     ascPrice: boolean;
-    ascRate: boolean;
+    bestRate: boolean;
   }
   
 
 const initialState : SortState = {
 
   ascPrice: true,
-  ascRate: false
+  bestRate: false
 };
 
 const sortPanelSlice = createSlice({
@@ -22,11 +22,14 @@ const sortPanelSlice = createSlice({
     toggleAscPrice: (state) => {
       state.ascPrice = !state.ascPrice;
     },
-    toggleAscRate: (state) => {
-      state.ascRate = !state.ascRate;
+    toggleBestRate: (state) => {
+      state.bestRate = !state.bestRate;
+    },
+    setBestRate : (state,  action: PayloadAction<boolean>) =>{
+      state.bestRate = action.payload;
     }
   }
 });
 
-export const {  toggleAscPrice, toggleAscRate } = sortPanelSlice.actions;
+export const { setBestRate,  toggleAscPrice, toggleBestRate } = sortPanelSlice.actions;
 export default sortPanelSlice.reducer;

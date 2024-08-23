@@ -1,13 +1,10 @@
-
-
-
 import React, { useEffect, useState, Suspense, startTransition } from "react";
 import { Col, Container, Pagination, Row, Stack } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
 
 // Lazy load the ProductCard component
-const ProductCard = React.lazy(() => import('../card/ProductCard'));
+const ProductCard = React.lazy(() => import("../card/ProductCard"));
 
 interface Product {
   id: number;
@@ -27,7 +24,7 @@ function Home() {
     (state: RootState) => state.categories.selectedCategories
   );
   const ascPrice = useSelector((state: RootState) => state.sort.ascPrice);
-  const ascRate = useSelector((state: RootState) => state.sort.ascRate);
+  const bestRate = useSelector((state: RootState) => state.sort.bestRate);
   const minPriceRange = useSelector(
     (state: RootState) => state.price.minPriceRange
   );
@@ -43,7 +40,7 @@ function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://fakestoreapi.com/products?limit=20");
+      const res = await fetch("https://fakestoreapi.com/products");
 
       if (!res.ok) {
         throw new Error(`Failed to fetch: ${res.statusText}`);
@@ -94,39 +91,68 @@ function Home() {
 
       let sortedProduct: Product[] | null = null;
 
-      if (filteredProduct !== null) {
-        sortedProduct = !ascPrice
-          ? filteredProduct.sort((a, b) => a.price - b.price)
-          : filteredProduct.sort((a, b) => b.price - a.price);
+      if (bestRate) {
+        if (filteredProduct !== null) {
+          sortedProduct = [...filteredProduct].sort(
+            (a, b) => b.rating.rate - a.rating.rate
+          );
+        } else {
+          if (products !== null) {
+            sortedProduct = [...products].sort(
+              (a, b) => b.rating.rate - a.rating.rate
+            );
+          }
+        }
       } else {
-        if (products !== null) {
-          sortedProduct = !ascPrice
-            ? products.sort((a, b) => a.price - b.price)
-            : products.sort((a, b) => b.price - a.price);
+        if (filteredProduct !== null) {
+          sortedProduct = ascPrice
+            ? [...filteredProduct].sort((a, b) => a.price - b.price)
+            : [...filteredProduct].sort((a, b) => b.price - a.price);
+        } else {
+          if (products !== null) {
+            sortedProduct = ascPrice
+              ?  [...products].sort((a, b) => a.price - b.price)
+              :  [...products].sort((a, b) => b.price - a.price);
+          }
         }
       }
-      setFilteredProducts(sortedProduct);
-    });
-  }, [selectedCategories, minPriceRange, maxPriceRange, ascPrice, ascRate, products]);
 
-  useEffect(() => {
-    startTransition(() => {
-      let sortedProduct: Product[] | null = null;
-
-      if (filteredProducts !== null) {
-        sortedProduct = !ascPrice
-          ? filteredProducts.sort((a, b) => a.price - b.price)
-          : filteredProducts.sort((a, b) => b.price - a.price);
-      } else {
-        if (products !== null) {
-          sortedProduct = !ascPrice
-            ? products.sort((a, b) => a.price - b.price)
-            : products.sort((a, b) => b.price - a.price);
-        }
-      }
-      setFilteredProducts(sortedProduct);
+      if (sortedProduct === null) {
+        setFilteredProducts(filteredProduct);
+      } else setFilteredProducts(sortedProduct);
     });
-  }, [ascPrice, ascRate, products, filteredProducts]);
+  }, [
+    selectedCategories,
+    minPriceRange,
+    maxPriceRange,
+    ascPrice,
+    bestRate,
+    products,
+  ]);
+
+  // useEffect(() => {
+  //   startTransition(() => {
+  //     let sortedProduct: Product[] | null = null;
+
+  //     if (bestRate){
+
+  //     }else{
+  //       if (filteredProducts !== null) {
+  //         sortedProduct = !ascPrice
+  //           ? filteredProducts.sort((a, b) => a.price - b.price)
+  //           : filteredProducts.sort((a, b) => b.price - a.price);
+  //       } else {
+  //         if (products !== null) {
+  //           sortedProduct = !ascPrice
+  //             ? products.sort((a, b) => a.price - b.price)
+  //             : products.sort((a, b) => b.price - a.price);
+  //         }
+  //       }
+  //     }
+
+  //     setFilteredProducts(sortedProduct);
+  //   });
+  // }, [ascPrice, bestRate, products, filteredProducts]);
 
   const totalPages =
     filteredProducts !== null
@@ -210,9 +236,7 @@ export default Home;
 //   };
 // }
 
-
 // const ProductCard = React.lazy(() => import('../card/ProductCard'));
-
 
 // function Home() {
 //   const selectedCategories = useSelector(

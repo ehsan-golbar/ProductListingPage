@@ -3,13 +3,14 @@ import {  ButtonGroup, Dropdown, Stack, ToggleButton } from "react-bootstrap";
 // import { Prev } from "react-bootstrap/esm/PageItem";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
-import { toggleAscPrice, toggleAscRate } from "../../store/slices/SortSlice";
+import { setBestRate, toggleAscPrice, toggleBestRate } from "../../store/slices/SortSlice";
+// import { Prev } from "react-bootstrap/esm/PageItem";
 
 function SortPannel() {
 
 
     const [priceChecked, setPriceChecked] = useState(false);
-    const [rateChecked, setRateChecked] = useState(false);
+    // const [rateChecked, setRateChecked] = useState(false);
 
 
     // const [ascPrice, setAscPrice] = useState(true)
@@ -17,7 +18,7 @@ function SortPannel() {
 
     const dispatch = useDispatch();
     const  ascPrice = useSelector((state: RootState)  => state.sort.ascPrice);
-    const  ascRate = useSelector((state: RootState)  => state.sort.ascRate);
+    const  bestRate = useSelector((state: RootState)  => state.sort.bestRate);
 
     
 
@@ -27,9 +28,9 @@ function SortPannel() {
   
 
     
-    const handleAscRate = () =>{
-      dispatch(toggleAscRate())
-  }
+  //   const handleAscRate = () =>{
+  //     dispatch(toggleAscRate())
+  // }
 
 
 
@@ -53,7 +54,9 @@ function SortPannel() {
           variant="outline-primary"
           checked={priceChecked}
           value="1"
-          onChange={(e) => setPriceChecked(e.currentTarget.checked)}
+          onChange={(e) => 
+          {  dispatch(setBestRate(false))
+            setPriceChecked(e.currentTarget.checked)}}
         >
           Price
         </ToggleButton>
@@ -84,30 +87,26 @@ function SortPannel() {
           id="toggle-check-2"
           type="checkbox"
           variant="outline-primary"
-          checked={rateChecked}
+          checked={bestRate}
           value="2"
-          onChange={(e) => setRateChecked(e.currentTarget.checked)}
+          onChange={() =>{ 
+
+            
+            
+            setPriceChecked(false )
+            dispatch (toggleBestRate())  
+
+            // setRateChecked(e.currentTarget.checked)
+          }
+          }
         >
-          Rate
+         Best Rate
         </ToggleButton>
       </ButtonGroup>
 
 
 
-{  rateChecked &&    <Dropdown>
-      <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
-        {ascRate ? 'asc' : 'dsc'}
-      </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item onClick={handleAscRate}>{!ascRate ? 'asc' : 'dsc'}</Dropdown.Item>
-        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
-      </Dropdown.Menu>
-    </Dropdown>
-
-}
-        
         
     </Stack>
     </>

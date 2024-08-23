@@ -37,6 +37,7 @@ function ProductCard(props: MyComponentProps) {
         <Card.Title>{props.product && props.product.title}</Card.Title>
         <Card.Text>${props.product && props.product.price}</Card.Text>
         <Button variant="primary">more</Button>
+        <Card.Text>{props.product && props.product.rating.rate}</Card.Text>
       </Card.Body>
     </Card>
   );
