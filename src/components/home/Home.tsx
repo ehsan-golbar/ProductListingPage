@@ -22,12 +22,16 @@ function Home() {
     (state: RootState) => state.categories.selectedCategories
   );
 
+  const ascPrice = useSelector((state: RootState) => state.sort.ascPrice);
+  const ascRate = useSelector((state: RootState) => state.sort.ascRate);
 
   const minPriceRange = useSelector(
-    (state: RootState) => state.price.minPriceRange  );
+    (state: RootState) => state.price.minPriceRange
+  );
 
-    const maxPriceRange = useSelector(
-      (state: RootState) => state.price.maxPriceRange  );
+  const maxPriceRange = useSelector(
+    (state: RootState) => state.price.maxPriceRange
+  );
 
   const [products, setProducts] = useState<Product[] | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<Product[] | null>(
@@ -64,39 +68,79 @@ function Home() {
   };
 
   useEffect(() => {
-
     let filteredProduct: Product[] | null = null;
     if (selectedCategories.length === 0) {
       setFilteredProducts(null);
     } else {
-       filteredProduct= (products ?? []).filter(
-        (prod) => {
-          return selectedCategories.includes(prod.category);
-        }
-      );
-
-      
+      filteredProduct = (products ?? []).filter((prod) => {
+        return selectedCategories.includes(prod.category);
+      });
     }
 
-
-    if (minPriceRange === 0 && maxPriceRange === 100){
+    if (minPriceRange === 0 && maxPriceRange === 100) {
       setFilteredProducts(null);
-    }else{
-      if (filteredProduct === null ){
-        filteredProduct= (products ?? []).filter(
-          (prod) => {
-            return prod.price <= maxPriceRange && prod.price >= minPriceRange;
-          })
-      }else{
-        filteredProduct= (filteredProduct ?? []).filter(
-          (prod) => {
-            return  prod.price <= maxPriceRange && prod.price >= minPriceRange;
-          })
+    } else {
+      if (filteredProduct === null) {
+        filteredProduct = (products ?? []).filter((prod) => {
+          return prod.price <= maxPriceRange && prod.price >= minPriceRange;
+        });
+      } else {
+        filteredProduct = (filteredProduct ?? []).filter((prod) => {
+          return prod.price <= maxPriceRange && prod.price >= minPriceRange;
+        });
       }
     }
 
-    setFilteredProducts(filteredProduct);
-  }, [selectedCategories, minPriceRange, maxPriceRange]);
+    let sortedProduct: Product[] | null = null;
+
+    if (filteredProduct !== null) {
+      sortedProduct = !ascPrice
+        ? filteredProduct.sort((a, b) => a.price - b.price)
+        : filteredProduct.sort((a, b) => b.price - a.price);
+      // sortedProduct = ascRate
+      //   ? sortedProduct.sort((a, b) => a.price - b.price)
+      //   : sortedProduct.sort((a, b) => b.price - a.price);
+    } else {
+      if (products !== null)
+{      sortedProduct = !ascPrice
+      ? products.sort((a, b) => a.price - b.price)
+      : products.sort((a, b) => b.price - a.price);
+    // sortedProduct = ascRate
+    //   ? sortedProduct.sort((a, b) => a.price - b.price)
+    //   : sortedProduct.sort((a, b) => b.price - a.price);
+    }
+    }
+    setFilteredProducts(sortedProduct)
+  }, [selectedCategories, minPriceRange, maxPriceRange,ascPrice, ascRate]);
+
+  useEffect(() => {
+    // if (ascPrice && !ascRate){
+    //     //do nothing
+    // }else{
+
+    // }
+
+    let sortedProduct: Product[] | null = null;
+
+    if (filteredProducts !== null) {
+      sortedProduct = !ascPrice
+        ? filteredProducts.sort((a, b) => a.price - b.price)
+        : filteredProducts.sort((a, b) => b.price - a.price);
+      // sortedProduct = ascRate
+      //   ? sortedProduct.sort((a, b) => a.price - b.price)
+      //   : sortedProduct.sort((a, b) => b.price - a.price);
+    } else {
+      if (products !== null)
+{      sortedProduct = !ascPrice
+      ? products.sort((a, b) => a.price - b.price)
+      : products.sort((a, b) => b.price - a.price);
+    // sortedProduct = ascRate
+    //   ? sortedProduct.sort((a, b) => a.price - b.price)
+    //   : sortedProduct.sort((a, b) => b.price - a.price);
+    }
+    }
+    setFilteredProducts(sortedProduct)
+  }, [ascPrice, ascRate]);
 
   const totalPages =
     filteredProducts !== null

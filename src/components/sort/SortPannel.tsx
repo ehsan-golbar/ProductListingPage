@@ -1,5 +1,9 @@
 import { useState } from "react";
-import {  ButtonGroup, Stack, ToggleButton } from "react-bootstrap";
+import {  ButtonGroup, Dropdown, Stack, ToggleButton } from "react-bootstrap";
+// import { Prev } from "react-bootstrap/esm/PageItem";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/Store";
+import { toggleAscPrice, toggleAscRate } from "../../store/slices/SortSlice";
 
 function SortPannel() {
 
@@ -7,13 +11,26 @@ function SortPannel() {
     const [priceChecked, setPriceChecked] = useState(false);
     const [rateChecked, setRateChecked] = useState(false);
 
-    const [radioValue, setRadioValue] = useState('1');
 
-    const radios = [
-      { name: 'asc', value: '1' },
-      { name: 'dsc', value: '2' }
-    ];
+    // const [ascPrice, setAscPrice] = useState(true)
+    // const [ascRate, setAscRate] = useState(true)
+
+    const dispatch = useDispatch();
+    const  ascPrice = useSelector((state: RootState)  => state.sort.ascPrice);
+    const  ascRate = useSelector((state: RootState)  => state.sort.ascRate);
+
+    
+
+    const handleAscPrice = () =>{
+       dispatch( toggleAscPrice())
+    }
   
+
+    
+    const handleAscRate = () =>{
+      dispatch(toggleAscRate())
+  }
+
 
 
  return(
@@ -42,6 +59,24 @@ function SortPannel() {
         </ToggleButton>
       </ButtonGroup>
 
+
+{ priceChecked &&
+      <Dropdown>
+      <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+        {ascPrice ? 'asc' : 'dsc'}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={handleAscPrice}>{!ascPrice ? 'asc' : 'dsc'}</Dropdown.Item>
+        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+      </Dropdown.Menu>
+    </Dropdown>
+
+}
+
+
+
       
 
       <ButtonGroup >
@@ -50,7 +85,7 @@ function SortPannel() {
           type="checkbox"
           variant="outline-primary"
           checked={rateChecked}
-          value="1"
+          value="2"
           onChange={(e) => setRateChecked(e.currentTarget.checked)}
         >
           Rate
@@ -58,24 +93,20 @@ function SortPannel() {
       </ButtonGroup>
 
 
-      <ButtonGroup>
-        {radios.map((radio, idx) => (
-          <ToggleButton
-            key={idx}
-            id={`radio-${idx}`}
-            type="radio"
-            variant={idx === parseInt( radioValue )?  'outline-primary' : 'outline-primary'}
-            name="radio"
-            value={radio.value}
-            checked={radioValue === radio.value}
-            onChange={(e) => setRadioValue(e.currentTarget.value)}
-          >
-            {radio.name}
-          </ToggleButton>
-        ))}
-      </ButtonGroup>
 
+{  rateChecked &&    <Dropdown>
+      <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+        {ascRate ? 'asc' : 'dsc'}
+      </Dropdown.Toggle>
 
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={handleAscRate}>{!ascRate ? 'asc' : 'dsc'}</Dropdown.Item>
+        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+      </Dropdown.Menu>
+    </Dropdown>
+
+}
         
         
     </Stack>
