@@ -23,12 +23,6 @@ function SearchPannel() {
   const maxPriceRange = useSelector(
     (state: RootState) => state.price.maxPriceRange
   );
-  // const [minPriceRange, setMinPriceRange] = useState<number>(50); // Default value
-  // const [maxPriceRange, setMaxPriceRange] = useState<number>(80); // Default value
-
-  //   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
-  //     new Set()
-  //   );
 
   const handleMinRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMinPrice = parseInt(e.target.value, 10);
@@ -61,14 +55,17 @@ function SearchPannel() {
     dispatch(toggleCategory(cat));
   };
 
-  //   useEffect(()=>{
-  //         console.log(selectedCategories)
-  //   }, [selectedCategories])
   return (
     <>
       <Stack
-        className="d-flex justify-content-start"
-        style={{ backgroundColor: "#d1d0d0", height: "100vh", gap: 0 }}
+        className="d-flex justify-content-start m-3 p-3"
+        style={{
+          backgroundColor: "#FFFFFF",
+          height: "100vh",
+          borderRadius: "10px",
+          position: "fixed",
+          top: "50px",
+        }}
       >
         <p>Filter</p>
 
@@ -92,8 +89,8 @@ function SearchPannel() {
 
           <Stack
             style={{
-              marginLeft: "2rem",
-              marginRight: "2rem",
+              marginLeft: "1rem",
+              marginRight: "1rem",
               padding: 0,
               height: "auto",
               display: "flex",

@@ -1,5 +1,5 @@
 // src/redux/categorySlice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CategoryState {
   selectedCategories: string[];
@@ -10,7 +10,7 @@ const initialState: CategoryState = {
 };
 
 const categorySlice = createSlice({
-  name: 'categories',
+  name: "categories",
   initialState,
   reducers: {
     toggleCategory: (state, action: PayloadAction<string>) => {

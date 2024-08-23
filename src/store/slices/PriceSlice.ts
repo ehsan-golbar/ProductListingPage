@@ -17,15 +17,6 @@ const priceSlice = createSlice({
   reducers: {
     setMinPriceRange: (state, action: PayloadAction<number>) => {
       state.minPriceRange = action.payload;
-      //   const category = action.payload;
-      //   const index = state.selectedCategories.indexOf(category);
-      //   if (index > -1) {
-      //     // Remove the category if it's already selected
-      //     state.selectedCategories.splice(index, 1);
-      //   } else {
-      //     // Add the category if it's not selected
-      //     state.selectedCategories.push(category);
-      //   }
     },
     setMaxPriceRange: (state, action: PayloadAction<number>) => {
       state.maxPriceRange = action.payload;
