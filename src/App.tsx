@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <Stack style={{ width: "100vw", backgroundColor: "#E2E4EB" }}>
+        <Stack style={{ width: "100vw", height:'100vw', backgroundColor: "#e9ecef" }}>
           <Header></Header>
           <div className="d-flex">
             <div className="flex-shrink-0" style={{ width: "20%" }}>

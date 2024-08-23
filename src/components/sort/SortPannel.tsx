@@ -39,7 +39,7 @@ function SortPannel() {
           backdropFilter: "blur(10px)",
         }}
       >
-        <p>Sort by : </p>
+        <p style={{fontWeight:'bold', marginTop:'0.5rem'}}>Sort by : </p>
 
         <ButtonGroup>
           <ToggleButton

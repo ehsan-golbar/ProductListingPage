@@ -1,0 +1,21 @@
+functionalities:
+
+	Responsive design
+
+	Filtering   *
+
+	sorting   *
+
+	optimization ( by reducing file sizes & lazy loading)
+
+	test for browsers compatibility *
+
+	deploy on githubPages   *
+
+tools:
+
+	Bootstrap
+	
+	public API (fetch api)
+	
+	React	

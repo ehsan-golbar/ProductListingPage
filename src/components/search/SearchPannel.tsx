@@ -67,10 +67,10 @@ function SearchPannel() {
           top: "50px",
         }}
       >
-        <p>Filter</p>
+        <p style={{fontWeight:'bold', fontSize:'23px'}}>Filter</p>
 
         <Stack style={{ marginLeft: "1rem" }} gap={3}>
-          <p>Category</p>
+          <p style={{fontWeight:'bold', fontSize:'20px'}}>Category</p>
 
           <Form style={{ marginLeft: "2rem" }}>
             {filterList.map((item) => (
@@ -80,12 +80,13 @@ function SearchPannel() {
                   id={`default-${item.cat}`}
                   label={`${item.cat}`}
                   onChange={() => handleCategoryChange(item.cat)}
+                  style={{fontWeight:'bold'}}
                 />
               </div>
             ))}
           </Form>
 
-          <p>Price</p>
+              <p style={{fontWeight:'bold', fontSize:'20px'}}>Price</p>
 
           <Stack
             style={{
@@ -98,21 +99,21 @@ function SearchPannel() {
               gap: "0.5rem",
             }}
           >
-            <Form.Label>min : ${minPriceRange}</Form.Label>
+            <Form.Label style={{fontWeight:'bold'}}>min : ${minPriceRange}</Form.Label>
             <Form.Range
               value={minPriceRange}
               onChange={handleMinRangeChange}
               min={0}
-              max={100} // Assuming the max price is 100, adjust this according to your needs
+              max={1000} // Assuming the max price is 100, adjust this according to your needs
             />
 
-            <Form.Label>max : ${maxPriceRange}</Form.Label>
+            <Form.Label style={{fontWeight:'bold'}}>max : ${maxPriceRange}</Form.Label>
             <Form.Range
               // disabled
               value={maxPriceRange}
               onChange={handleMaxRangeChange}
               min={0}
-              max={100} // Assuming the max price is 100, adjust this according to your needs
+              max={1000} // Assuming the max price is 100, adjust this according to your needs
             />
           </Stack>
         </Stack>

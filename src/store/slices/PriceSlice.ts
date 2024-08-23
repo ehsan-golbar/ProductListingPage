@@ -8,7 +8,7 @@ interface PriceState {
 
 const initialState: PriceState = {
   minPriceRange: 0,
-  maxPriceRange: 100,
+  maxPriceRange: 1000,
 };
 
 const priceSlice = createSlice({

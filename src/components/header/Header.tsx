@@ -9,8 +9,9 @@ function Header() {
       className=""
       style={{
         width: "100%",
-        backgroundColor: "#1ABA1A",
+        backgroundColor: "#0d6efd",
         position: "fixed",
+        top: "0px",
         zIndex: 1000,
         right: "0px",
         left: "0px",
@@ -26,19 +27,6 @@ function Header() {
             <Nav.Link href="#home" style={{ color: "#FFFFFF" }}>
               All Products
             </Nav.Link>
-            {/* <Nav.Link href="#link" style={{color:"#FFFFFF"}}>Costum Products</Nav.Link> */}
-            {/* <NavDropdown title="Costum Products" id="basic-nav-dropdown"> */}
-            {/* <NavDropdown.Item href="#action/3.1">Filter</NavDropdown.Item>
-              <NavDropdown.Divider />
-
-              <NavDropdown.Item href="#action/3.2">
-               Sort
-              </NavDropdown.Item> */}
-            {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
-            {/* <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item> */}
-            {/* </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -172,6 +172,7 @@ function Home() {
                 <Row
                   key={chunk[0].id}
                   className="d-flex justify-content-center align-items-start  mb-4"
+                  lg={3}
                 >
                   {chunk.map((prod) => (
                     <Col key={prod.id}>
@@ -183,7 +184,7 @@ function Home() {
           </Suspense>
         </Container>
 
-        <Pagination className="mb-3 d-flex justify-content-center">
+        <Pagination className="mb-3 d-flex justify-content-center " >
           {items}
         </Pagination>
       </Stack>
