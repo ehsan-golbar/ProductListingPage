@@ -6,8 +6,8 @@
   /* position: fixed; */
   /* bottom: 0px;
   top: 0px; */
-  overflow-y: scroll;
-  z-index: 1000;
+  /* overflow-y: scroll; */
+  /* z-index: 1000; */
 }
 
 .h-screen {

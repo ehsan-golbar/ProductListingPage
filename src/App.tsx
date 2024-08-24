@@ -17,7 +17,7 @@ function App() {
         {/* main conntainer */}
 
         <div className="bg-gray vw-100 vh-100">
-          <Container fluid className="">
+          <Container fluid className="bg-gray">
             <Row>
               <Header></Header>
             </Row>

@@ -6,14 +6,14 @@ import Navbar from "react-bootstrap/Navbar";
 function Header() {
   return (
     <Navbar
-      className=""
+      className="fixed-top"
       style={{
         width: "100%",
         backgroundColor: "#0d6efd",
-        position: "fixed",
+        // position: "fixed",
         // top: "0px",
-        zIndex: 999,
-        // right: "0px",
+        // zIndex: 2,
+        // right: "15px",
         // left: "0px",
       }}
       expand="lg"
