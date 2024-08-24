@@ -25,7 +25,7 @@ function SortPannel() {
     <>
       <Stack
         direction="horizontal"
-        className="d-flex justify-content-start align-items-center mt-3 rounded-3"
+        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-none d-md-block"
         gap={3}
         style={{
           // width: "80%",
@@ -33,6 +33,73 @@ function SortPannel() {
           // padding: "1rem",
           // borderRadius: "10px",
           position: "fixed",
+          top: "50px",
+          // right: "0px",
+          zIndex: "999",
+          // backdropFilter: "blur(10px)",
+        }}
+      >
+        <p style={{ fontWeight: "bold", marginTop: "0.5rem" }}>Sort by : </p>
+
+        <ButtonGroup>
+          <ToggleButton
+            id="toggle-check-1"
+            type="checkbox"
+            variant="outline-primary"
+            checked={priceChecked}
+            value="1"
+            onChange={(e) => {
+              dispatch(setBestRate(false));
+              setPriceChecked(e.currentTarget.checked);
+            }}
+          >
+            Price
+          </ToggleButton>
+        </ButtonGroup>
+
+        {priceChecked && (
+          <Dropdown>
+            <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+              {ascPrice ? "asc" : "dsc"}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={handleAscPrice}>
+                {!ascPrice ? "asc" : "dsc"}
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
+
+        <ButtonGroup>
+          <ToggleButton
+            id="toggle-check-2"
+            type="checkbox"
+            variant="outline-primary"
+            checked={bestRate}
+            value="2"
+            onChange={() => {
+              setPriceChecked(false);
+              dispatch(toggleBestRate());
+
+              // setRateChecked(e.currentTarget.checked)
+            }}
+          >
+            Best Rate
+          </ToggleButton>
+        </ButtonGroup>
+      </Stack>
+
+      <Stack
+        direction="horizontal"
+        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-md-none"
+        gap={3}
+        style={{
+          // width: "80%",
+          backgroundColor: "#FFFFFF",
+          // padding: "1rem",
+          // borderRadius: "10px",
+          // position: "fixed",
           top: "50px",
           // right: "0px",
           zIndex: "999",

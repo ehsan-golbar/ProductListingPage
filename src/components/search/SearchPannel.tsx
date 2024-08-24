@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Form, Stack } from "react-bootstrap";
+import { Container, Form, Row, Stack } from "react-bootstrap";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import { AppDispatch, RootState } from "../../store/Store";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +58,7 @@ function SearchPannel() {
   return (
     <>
       <Stack
-        className="d-flex justify-content-start mt-3 p-4 shadow"
+        className="d-flex justify-content-start mt-3 p-4 shadow d-none d-md-block"
         style={{
           backgroundColor: "#FFFFFF",
           height: "100vh",
@@ -72,7 +72,7 @@ function SearchPannel() {
         <Stack style={{ marginLeft: "1rem" }} gap={3}>
           <p style={{ fontWeight: "bold", fontSize: "20px" }}>Category</p>
 
-          <Form style={{ marginLeft: "2rem" }}>
+          <Form style={{ marginLeft: "1.5rem" }}>
             {filterList.map((item) => (
               <div key={`default-${item.cat}`} className="mb-3">
                 <Form.Check // prettier-ignore
@@ -135,6 +135,111 @@ function SearchPannel() {
               );
             })} */}
       </Stack>
+
+      <Container
+        className=" p-4 shadow d-md-none"
+        style={{
+          backgroundColor: "#FFFFFF",
+          // width: "100vw",
+          maxWidth: "100%",
+          // height: "100vh",
+          borderRadius: "10px",
+          // position: "fixed",
+          // top: "150px",
+          marginTop: "5rem",
+        }}
+      >
+        <Row>
+          <p style={{ fontWeight: "bold", fontSize: "23px" }}>Filter</p>
+        </Row>
+
+        <Row>
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Category</p>
+          <Form style={{ marginLeft: "1.5rem" }} className="d-flex gap-4">
+            {filterList.map((item) => (
+              <div key={`default-${item.cat}`} className="mb-3">
+                <Form.Check // prettier-ignore
+                  type={item.type}
+                  id={`default-${item.cat}`}
+                  label={`${item.cat}`}
+                  onChange={() => handleCategoryChange(item.cat)}
+                  style={{ fontWeight: "bold" }}
+                />
+              </div>
+            ))}
+          </Form>
+        </Row>
+
+        <Row>
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Price</p>
+        </Row>
+        <Row>
+          {" "}
+          <Stack
+            style={{
+              marginLeft: "1rem",
+              marginRight: "1rem",
+              padding: 0,
+              height: "auto",
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+            }}
+          >
+            <Form.Label style={{ fontWeight: "bold" }}>
+              min : ${minPriceRange}
+            </Form.Label>
+            <Form.Range
+              value={minPriceRange}
+              onChange={handleMinRangeChange}
+              min={0}
+              max={1000} // Assuming the max price is 100, adjust this according to your needs
+            />
+
+            <Form.Label style={{ fontWeight: "bold" }}>
+              max : ${maxPriceRange}
+            </Form.Label>
+            <Form.Range
+              // disabled
+              value={maxPriceRange}
+              onChange={handleMaxRangeChange}
+              min={0}
+              max={1000} // Assuming the max price is 100, adjust this according to your needs
+            />
+          </Stack>
+        </Row>
+      </Container>
+      {/* <Stack
+        direction="horizontal"
+        className="d-flex justify-content-start mt-3 p-4 shadow d-md-none"
+        style={{
+          backgroundColor: "#FFFFFF",
+          // height: "100vh",
+          borderRadius: "10px",
+          position: "fixed",
+          top: "110px",
+        }}
+      >
+        <p style={{ fontWeight: "bold", fontSize: "23px" }}>Filter</p>
+
+        <Stack direction="horizontal">
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Category</p>
+
+          <Form style={{ marginLeft: "1.5rem" }} className="d-flex">
+            {filterList.map((item) => (
+              <div key={`default-${item.cat}`} className="mb-3">
+                <Form.Check // prettier-ignore
+                  type={item.type}
+                  id={`default-${item.cat}`}
+                  label={`${item.cat}`}
+                  onChange={() => handleCategoryChange(item.cat)}
+                  style={{ fontWeight: "bold" }}
+                />
+              </div>
+            ))}
+          </Form>
+        </Stack>
+      </Stack> */}
     </>
   );
 }

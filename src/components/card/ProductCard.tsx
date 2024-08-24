@@ -23,7 +23,10 @@ interface MyComponentProps {
 }
 function ProductCard(props: MyComponentProps) {
   return (
-    <Card style={{ width: "auto", height: "35rem", borderRadius: "10px" }}>
+    <Card
+      style={{ width: "auto", height: "35rem", borderRadius: "10px" }}
+      className="ms-md-5"
+    >
       <Card.Img
         variant="top"
         src={props.product?.image}

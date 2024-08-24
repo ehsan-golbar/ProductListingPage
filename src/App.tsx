@@ -23,17 +23,21 @@ function App() {
             </Row>
 
             <Row>
-              <Col lg={3} md={3}>
+              <Col lg={3} md={4} sm={12}>
                 <SearchPannel></SearchPannel>
               </Col>
 
-              <Col lg={9} md={9}>
+              <Col lg={9} md={8} sm={12}>
                 <Row>
                   <SortPannel></SortPannel>
                 </Row>
-                <Row>
+                <Row className="d-sm-none d-md-block">
                   <Home></Home>
                 </Row>
+              </Col>
+
+              <Col className="d-md-none">
+                <Home></Home>
               </Col>
             </Row>
 

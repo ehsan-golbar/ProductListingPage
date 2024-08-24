@@ -180,7 +180,7 @@ function Home() {
   return (
     <>
       {/* <Stack style={{ marginTop: "8rem" }}> */}
-      <Container style={{ marginTop: "8rem" }}>
+      <Container style={{ marginTop: "8rem" }} className="d-none d-md-block">
         <Suspense fallback={<div>Loading...</div>}>
           {productChunks &&
             productChunks.map((chunk) => (
@@ -189,7 +189,25 @@ function Home() {
                 className="d-flex justify-content-center align-items-start  mb-4"
               >
                 {chunk.map((prod) => (
-                  <Col key={prod.id} xl={4} lg={6} md={6}>
+                  <Col key={prod.id} xl={4} lg={6} md={12}>
+                    <ProductCard product={prod} />
+                  </Col>
+                ))}
+              </Row>
+            ))}
+        </Suspense>
+      </Container>
+
+      <Container style={{ marginTop: "2rem" }} className="d-md-none">
+        <Suspense fallback={<div>Loading...</div>}>
+          {productChunks &&
+            productChunks.map((chunk) => (
+              <Row
+                key={chunk[0].id}
+                className="d-flex justify-content-center align-items-start  mb-4"
+              >
+                {chunk.map((prod) => (
+                  <Col key={prod.id} xl={4} lg={6} md={12}>
                     <ProductCard product={prod} />
                   </Col>
                 ))}
