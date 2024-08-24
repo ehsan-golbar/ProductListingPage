@@ -20,3 +20,7 @@
 .header-color {
   background-color: #0d6efd;
 }
+
+.px-6 {
+  padding-inline: 3.2rem;
+}

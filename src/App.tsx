@@ -31,7 +31,7 @@ function App() {
                 <Row>
                   <SortPannel></SortPannel>
                 </Row>
-                <Row className="d-sm-none d-md-block">
+                <Row className="">
                   <Home></Home>
                 </Row>
               </Col>

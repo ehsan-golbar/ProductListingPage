@@ -25,7 +25,7 @@ function SortPannel() {
     <>
       <Stack
         direction="horizontal"
-        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-none d-md-flex"
+        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-none d-md-flex shadow"
         gap={3}
         style={{
           // width: "80%",
@@ -100,7 +100,7 @@ function SortPannel() {
 
       <Stack
         direction="horizontal"
-        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-md-none"
+        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-md-none shadow"
         gap={3}
         style={{
           // width: "80%",

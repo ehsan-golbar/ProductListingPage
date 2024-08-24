@@ -58,13 +58,14 @@ function SearchPannel() {
   return (
     <>
       <Stack
-        className="d-flex justify-content-start mt-3 p-4 shadow d-none d-md-flex"
+        className="d-flex justify-content-start mt-3 py-2 shadow d-none d-md-flex px-xl-5 px-md-4 px-lg-4"
         style={{
           backgroundColor: "#FFFFFF",
           height: "100vh",
           borderRadius: "10px",
           position: "fixed",
           top: "50px",
+          // paddingInline: "3.2rem",
         }}
       >
         <p style={{ fontWeight: "bold", fontSize: "23px" }}>Filter</p>
