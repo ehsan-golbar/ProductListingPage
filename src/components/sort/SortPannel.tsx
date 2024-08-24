@@ -25,7 +25,7 @@ function SortPannel() {
     <>
       <Stack
         direction="horizontal"
-        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-none d-md-block"
+        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-none d-md-flex"
         gap={3}
         style={{
           // width: "80%",
@@ -39,7 +39,15 @@ function SortPannel() {
           // backdropFilter: "blur(10px)",
         }}
       >
-        <p style={{ fontWeight: "bold", marginTop: "0.5rem" }}>Sort by : </p>
+        <p
+          style={{
+            fontWeight: "bold",
+            marginTop: "0.5rem",
+            width: "fit-content",
+          }}
+        >
+          Sort by :
+        </p>
 
         <ButtonGroup>
           <ToggleButton

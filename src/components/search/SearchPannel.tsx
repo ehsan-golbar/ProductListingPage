@@ -58,7 +58,7 @@ function SearchPannel() {
   return (
     <>
       <Stack
-        className="d-flex justify-content-start mt-3 p-4 shadow d-none d-md-block"
+        className="d-flex justify-content-start mt-3 p-4 shadow d-none d-md-flex"
         style={{
           backgroundColor: "#FFFFFF",
           height: "100vh",
