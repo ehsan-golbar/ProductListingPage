@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Custom hook to get current window width
 export default function useWindowWidth() {

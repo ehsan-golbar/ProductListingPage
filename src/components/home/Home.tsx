@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense, startTransition } from "react";
-import { Col, Container, Pagination, Row, Stack } from "react-bootstrap";
+import { Col, Container, Pagination, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
 import useWindowWidth from "../../hooks/useWndowWidth";

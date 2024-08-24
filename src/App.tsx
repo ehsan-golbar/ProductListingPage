@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { Col, Container, Row } from 'react-bootstrap'
 import Home from "./components/home/Home";
-import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Header from "./components/header/Header";
 import SearchPannel from "./components/search/SearchPannel";
 import SortPannel from "./components/sort/SortPannel";
