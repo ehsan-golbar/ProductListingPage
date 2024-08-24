@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { Container, Form, Row, Stack } from "react-bootstrap";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import { AppDispatch, RootState } from "../../store/Store";
@@ -10,13 +9,12 @@ import {
 } from "../../store/slices/PriceSlice";
 
 interface FilterItem {
-  type: FormCheckType; // Ensuring type is one of the allowed FormCheckType
+  type: FormCheckType;
   cat: string;
 }
 
 function SearchPannel() {
   const dispatch: AppDispatch = useDispatch();
-  // const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
   const minPriceRange = useSelector(
     (state: RootState) => state.price.minPriceRange
   );
@@ -29,7 +27,6 @@ function SearchPannel() {
     if (newMinPrice < maxPriceRange) {
       dispatch(setMinPriceRange(newMinPrice));
     } else {
-      // If the new min price is greater than the max price, update both
       dispatch(setMinPriceRange(maxPriceRange - 1));
     }
   };
@@ -39,7 +36,6 @@ function SearchPannel() {
     if (newMaxPrice > minPriceRange) {
       dispatch(setMaxPriceRange(newMaxPrice));
     } else {
-      // If the new max price is less than the min price, update both
       dispatch(setMaxPriceRange(minPriceRange + 1));
     }
   };
@@ -65,7 +61,6 @@ function SearchPannel() {
           borderRadius: "10px",
           position: "fixed",
           top: "50px",
-          // paddingInline: "3.2rem",
         }}
       >
         <p style={{ fontWeight: "bold", fontSize: "23px" }}>Filter</p>
@@ -107,46 +102,29 @@ function SearchPannel() {
               value={minPriceRange}
               onChange={handleMinRangeChange}
               min={0}
-              max={1000} // Assuming the max price is 100, adjust this according to your needs
+              max={1000}
             />
 
             <Form.Label style={{ fontWeight: "bold" }}>
               max : ${maxPriceRange}
             </Form.Label>
             <Form.Range
-              // disabled
               value={maxPriceRange}
               onChange={handleMaxRangeChange}
               min={0}
-              max={1000} // Assuming the max price is 100, adjust this according to your needs
+              max={1000}
             />
           </Stack>
         </Stack>
-
-        {/* <p>Sort</p> */}
-
-        {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
-              return (
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
-                  omnis velit totam saepe, minima placeat quasi iure blanditiis
-                  delectus amet ad? Dolorem, molestiae. Et corrupti nihil
-                  cupiditate nisi eius fugiat.
-                </p>
-              );
-            })} */}
       </Stack>
 
       <Container
         className="pe-5 shadow d-md-none"
         style={{
           backgroundColor: "#FFFFFF",
-          // width: "100vw",
           maxWidth: "100%",
-          // height: "100vh",
           borderRadius: "10px",
-          // position: "fixed",
-          // top: "150px",
+
           marginTop: "5rem",
         }}
       >
@@ -196,53 +174,21 @@ function SearchPannel() {
               value={minPriceRange}
               onChange={handleMinRangeChange}
               min={0}
-              max={1000} // Assuming the max price is 100, adjust this according to your needs
+              max={1000}
             />
 
             <Form.Label style={{ fontWeight: "bold" }}>
               max : ${maxPriceRange}
             </Form.Label>
             <Form.Range
-              // disabled
               value={maxPriceRange}
               onChange={handleMaxRangeChange}
               min={0}
-              max={1000} // Assuming the max price is 100, adjust this according to your needs
+              max={1000}
             />
           </Stack>
         </Row>
       </Container>
-      {/* <Stack
-        direction="horizontal"
-        className="d-flex justify-content-start mt-3 p-4 shadow d-md-none"
-        style={{
-          backgroundColor: "#FFFFFF",
-          // height: "100vh",
-          borderRadius: "10px",
-          position: "fixed",
-          top: "110px",
-        }}
-      >
-        <p style={{ fontWeight: "bold", fontSize: "23px" }}>Filter</p>
-
-        <Stack direction="horizontal">
-          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Category</p>
-
-          <Form style={{ marginLeft: "1.5rem" }} className="d-flex">
-            {filterList.map((item) => (
-              <div key={`default-${item.cat}`} className="mb-3">
-                <Form.Check // prettier-ignore
-                  type={item.type}
-                  id={`default-${item.cat}`}
-                  label={`${item.cat}`}
-                  onChange={() => handleCategoryChange(item.cat)}
-                  style={{ fontWeight: "bold" }}
-                />
-              </div>
-            ))}
-          </Form>
-        </Stack>
-      </Stack> */}
     </>
   );
 }

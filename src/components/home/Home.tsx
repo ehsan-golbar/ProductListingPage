@@ -40,7 +40,7 @@ function Home() {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const windowWidth = useWindowWidth();
-  const [chunkSize, setChunkSize] = useState<number>(3); // Default chunk size
+  const [chunkSize, setChunkSize] = useState<number>(3);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -58,7 +58,6 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    // Adjust chunk size based on window width
     if (windowWidth >= 1200) {
       setChunkSize(3); // Extra large screens (>=1200px)
     } else if (windowWidth >= 992) {
@@ -172,7 +171,6 @@ function Home() {
         key={number}
         active={number === active}
         onClick={() => handlePageChange(number)}
-        // style={{color:'#000000'}}
       >
         {number}
       </Pagination.Item>
@@ -181,7 +179,6 @@ function Home() {
 
   return (
     <>
-      {/* <Stack style={{ marginTop: "8rem" }}> */}
       <Container style={{ marginTop: "8rem" }} className="d-none d-md-block">
         <Suspense fallback={<div>Loading...</div>}>
           {productChunks &&
@@ -221,7 +218,6 @@ function Home() {
       <Pagination className="mb-3 d-flex justify-content-center ">
         {items}
       </Pagination>
-      {/* </Stack> */}
     </>
   );
 }

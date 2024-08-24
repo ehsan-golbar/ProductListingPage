@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -44,16 +43,12 @@ function ProductCard(props: MyComponentProps) {
         gap={2}
       >
         <Card.Img
-          // variant="top"
           src={star}
           style={{
             width: "30px",
             height: "40px",
-            // paddingRight: "1rem",
             objectFit: "contain",
           }}
-
-          // loading="lazy"
         />
 
         <Card.Text>

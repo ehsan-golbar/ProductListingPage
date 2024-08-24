@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ButtonGroup, Dropdown, Stack, ToggleButton } from "react-bootstrap";
-// import { Prev } from "react-bootstrap/esm/PageItem";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
 import {
@@ -8,7 +7,6 @@ import {
   toggleAscPrice,
   toggleBestRate,
 } from "../../store/slices/SortSlice";
-// import { Prev } from "react-bootstrap/esm/PageItem";
 
 function SortPannel() {
   const [priceChecked, setPriceChecked] = useState(false);
@@ -28,15 +26,11 @@ function SortPannel() {
         className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-none d-md-flex shadow"
         gap={3}
         style={{
-          // width: "80%",
           backgroundColor: "#FFFFFF",
-          // padding: "1rem",
-          // borderRadius: "10px",
+
           position: "fixed",
           top: "50px",
-          // left: "a",
           zIndex: "999",
-          // backdropFilter: "blur(10px)",
         }}
       >
         <p
@@ -89,8 +83,6 @@ function SortPannel() {
             onChange={() => {
               setPriceChecked(false);
               dispatch(toggleBestRate());
-
-              // setRateChecked(e.currentTarget.checked)
             }}
           >
             Best Rate
@@ -103,15 +95,10 @@ function SortPannel() {
         className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-md-none shadow"
         gap={3}
         style={{
-          // width: "80%",
           backgroundColor: "#FFFFFF",
-          // padding: "1rem",
-          // borderRadius: "10px",
-          // position: "fixed",
+
           top: "50px",
-          // right: "0px",
           zIndex: "999",
-          // backdropFilter: "blur(10px)",
         }}
       >
         <p style={{ fontWeight: "bold", marginTop: "0.5rem" }}>Sort by : </p>
@@ -156,8 +143,6 @@ function SortPannel() {
             onChange={() => {
               setPriceChecked(false);
               dispatch(toggleBestRate());
-
-              // setRateChecked(e.currentTarget.checked)
             }}
           >
             Best Rate

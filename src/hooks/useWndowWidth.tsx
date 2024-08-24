@@ -20,5 +20,3 @@ export default function useWindowWidth() {
 
   return windowWidth;
 }
-
-// Utility function to chunk the array
