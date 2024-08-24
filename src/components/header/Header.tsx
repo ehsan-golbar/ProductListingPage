@@ -1,3 +1,4 @@
+import { Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,13 +12,14 @@ function Header() {
         width: "100%",
         backgroundColor: "#0d6efd",
         position: "fixed",
-        top: "0px",
-        zIndex: 1000,
-        right: "0px",
-        left: "0px",
+        // top: "0px",
+        zIndex: 999,
+        // right: "0px",
+        // left: "0px",
       }}
+      expand="lg"
     >
-      <Container>
+      <Container fluid className="">
         <Navbar.Brand href="#home" style={{ color: "#FFFFFF" }}>
           React-Bootstrap
         </Navbar.Brand>

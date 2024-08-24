@@ -58,7 +58,7 @@ function SearchPannel() {
   return (
     <>
       <Stack
-        className="d-flex justify-content-start m-3 p-3"
+        className="d-flex justify-content-start mt-3 p-4 shadow"
         style={{
           backgroundColor: "#FFFFFF",
           height: "100vh",
@@ -67,10 +67,10 @@ function SearchPannel() {
           top: "50px",
         }}
       >
-        <p style={{fontWeight:'bold', fontSize:'23px'}}>Filter</p>
+        <p style={{ fontWeight: "bold", fontSize: "23px" }}>Filter</p>
 
         <Stack style={{ marginLeft: "1rem" }} gap={3}>
-          <p style={{fontWeight:'bold', fontSize:'20px'}}>Category</p>
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Category</p>
 
           <Form style={{ marginLeft: "2rem" }}>
             {filterList.map((item) => (
@@ -80,13 +80,13 @@ function SearchPannel() {
                   id={`default-${item.cat}`}
                   label={`${item.cat}`}
                   onChange={() => handleCategoryChange(item.cat)}
-                  style={{fontWeight:'bold'}}
+                  style={{ fontWeight: "bold" }}
                 />
               </div>
             ))}
           </Form>
 
-              <p style={{fontWeight:'bold', fontSize:'20px'}}>Price</p>
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Price</p>
 
           <Stack
             style={{
@@ -99,7 +99,9 @@ function SearchPannel() {
               gap: "0.5rem",
             }}
           >
-            <Form.Label style={{fontWeight:'bold'}}>min : ${minPriceRange}</Form.Label>
+            <Form.Label style={{ fontWeight: "bold" }}>
+              min : ${minPriceRange}
+            </Form.Label>
             <Form.Range
               value={minPriceRange}
               onChange={handleMinRangeChange}
@@ -107,7 +109,9 @@ function SearchPannel() {
               max={1000} // Assuming the max price is 100, adjust this according to your needs
             />
 
-            <Form.Label style={{fontWeight:'bold'}}>max : ${maxPriceRange}</Form.Label>
+            <Form.Label style={{ fontWeight: "bold" }}>
+              max : ${maxPriceRange}
+            </Form.Label>
             <Form.Range
               // disabled
               value={maxPriceRange}
@@ -119,6 +123,17 @@ function SearchPannel() {
         </Stack>
 
         {/* <p>Sort</p> */}
+
+        {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
+              return (
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
+                  omnis velit totam saepe, minima placeat quasi iure blanditiis
+                  delectus amet ad? Dolorem, molestiae. Et corrupti nihil
+                  cupiditate nisi eius fugiat.
+                </p>
+              );
+            })} */}
       </Stack>
     </>
   );

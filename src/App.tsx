@@ -1,8 +1,8 @@
-// import './App.css'
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { Col, Container, Row } from 'react-bootstrap'
 import Home from "./components/home/Home";
-import { Stack } from "react-bootstrap";
+import { Col, Container, Row, Stack } from "react-bootstrap";
 import Header from "./components/header/Header";
 import SearchPannel from "./components/search/SearchPannel";
 import SortPannel from "./components/sort/SortPannel";
@@ -14,25 +14,63 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <Stack style={{ width: "100vw", height:'100vw', backgroundColor: "#e9ecef" }}>
-          <Header></Header>
-          <div className="d-flex">
-            <div className="flex-shrink-0" style={{ width: "20%" }}>
-              <Stack>
-                {/* Content for the first Stack */}
-                <SearchPannel></SearchPannel>
-              </Stack>
-            </div>
-            <div className="flex-grow-1" style={{ width: "80%" }}>
-              <Stack>
-                {/* Content for the second Stack */}
+        {/* main conntainer */}
 
-                <SortPannel></SortPannel>
-                <Home></Home>
-              </Stack>
-            </div>
-          </div>
-        </Stack>
+        <div className="bg-gray vw-100 vh-100">
+          <Container fluid className="">
+            <Row>
+              <Header></Header>
+            </Row>
+
+            <Row>
+              <Col lg={3} md={3}>
+                <SearchPannel></SearchPannel>
+              </Col>
+
+              <Col lg={9} md={9}>
+                <Row>
+                  <SortPannel></SortPannel>
+                </Row>
+                <Row>
+                  <Home></Home>
+                </Row>
+              </Col>
+            </Row>
+
+            {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
+              return (
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
+                  omnis velit totam saepe, minima placeat quasi iure blanditiis
+                  delectus amet ad? Dolorem, molestiae. Et corrupti nihil
+                  cupiditate nisi eius fugiat.
+                </p>
+              );
+            })} */}
+            {/* header container */}
+            {/* <Container className="d-flex flex-row  w-100  header-color "></Container> */}
+
+            {/* <Container  className="header-color">slam</Container> */}
+
+            {/* body container */}
+            {/* <Stack className="mt-5 pt-5 d-flex ">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
+              quasi accusamus minima eos veritatis doloremque? Ipsam ab error
+              nostrum ea odio illum ipsum esse, at veritatis perspiciatis, nulla
+              in dolores. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Neque mollitia placeat reprehenderit incidunt repellat animi
+              provident fugit qui! Repellat debitis officia ratione? Dolore,
+              delectus veniam suscipit dolorum ea officiis et?
+            </p>
+          </Stack> */}
+
+            {/* filter section */}
+            {/* <Container>
+            <SearchPannel></SearchPannel>
+          </Container> */}
+          </Container>
+        </div>
       </Provider>
     </>
   );

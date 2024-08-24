@@ -2,6 +2,7 @@ import React, { useEffect, useState, Suspense, startTransition } from "react";
 import { Col, Container, Pagination, Row, Stack } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
+import useWindowWidth from "../../hooks/useWndowWidth";
 
 // Lazy load the ProductCard component
 const ProductCard = React.lazy(() => import("../card/ProductCard"));
@@ -38,6 +39,9 @@ function Home() {
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
 
+  const windowWidth = useWindowWidth();
+  const [chunkSize, setChunkSize] = useState<number>(3); // Default chunk size
+
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetch("https://fakestoreapi.com/products");
@@ -52,6 +56,17 @@ function Home() {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    // Adjust chunk size based on window width
+    if (windowWidth >= 1200) {
+      setChunkSize(3); // Extra large screens (>=1200px)
+    } else if (windowWidth >= 992) {
+      setChunkSize(2); // Large screens (>=992px)
+    } else {
+      setChunkSize(1); // Medium and smaller screens (<992px)
+    }
+  }, [windowWidth]);
 
   const chunkArray = (arr: Product[] | null, chunkSize: number) => {
     if (arr !== null) {
@@ -141,7 +156,7 @@ function Home() {
       ? filteredProducts?.slice(startIndex, startIndex + 6)
       : products?.slice(startIndex, startIndex + 6);
 
-  const productChunks = chunkArray(currentItems ?? [], 3);
+  const productChunks = chunkArray(currentItems ?? [], chunkSize);
 
   const handlePageChange = (num: number) => {
     setCurrentPage(num);
@@ -164,30 +179,29 @@ function Home() {
 
   return (
     <>
-      <Stack style={{ marginTop: "13rem" }}>
-        <Container>
-          <Suspense fallback={<div>Loading...</div>}>
-            {productChunks &&
-              productChunks.map((chunk) => (
-                <Row
-                  key={chunk[0].id}
-                  className="d-flex justify-content-center align-items-start  mb-4"
-                  lg={3}
-                >
-                  {chunk.map((prod) => (
-                    <Col key={prod.id}>
-                      <ProductCard product={prod} />
-                    </Col>
-                  ))}
-                </Row>
-              ))}
-          </Suspense>
-        </Container>
+      {/* <Stack style={{ marginTop: "8rem" }}> */}
+      <Container style={{ marginTop: "8rem" }}>
+        <Suspense fallback={<div>Loading...</div>}>
+          {productChunks &&
+            productChunks.map((chunk) => (
+              <Row
+                key={chunk[0].id}
+                className="d-flex justify-content-center align-items-start  mb-4"
+              >
+                {chunk.map((prod) => (
+                  <Col key={prod.id} xl={4} lg={6} md={6}>
+                    <ProductCard product={prod} />
+                  </Col>
+                ))}
+              </Row>
+            ))}
+        </Suspense>
+      </Container>
 
-        <Pagination className="mb-3 d-flex justify-content-center ">
-          {items}
-        </Pagination>
-      </Stack>
+      <Pagination className="mb-3 d-flex justify-content-center ">
+        {items}
+      </Pagination>
+      {/* </Stack> */}
     </>
   );
 }

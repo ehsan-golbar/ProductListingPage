@@ -25,21 +25,21 @@ function SortPannel() {
     <>
       <Stack
         direction="horizontal"
-        className="d-flex justify-content-start align-items-center m-3"
+        className="d-flex justify-content-start align-items-center mt-3 rounded-3"
         gap={3}
         style={{
-          width: "80%",
+          // width: "80%",
           backgroundColor: "#FFFFFF",
-          padding: "1rem",
-          borderRadius: "10px",
+          // padding: "1rem",
+          // borderRadius: "10px",
           position: "fixed",
           top: "50px",
-          right: "0px",
+          // right: "0px",
           zIndex: "999",
-          backdropFilter: "blur(10px)",
+          // backdropFilter: "blur(10px)",
         }}
       >
-        <p style={{fontWeight:'bold', marginTop:'0.5rem'}}>Sort by : </p>
+        <p style={{ fontWeight: "bold", marginTop: "0.5rem" }}>Sort by : </p>
 
         <ButtonGroup>
           <ToggleButton
