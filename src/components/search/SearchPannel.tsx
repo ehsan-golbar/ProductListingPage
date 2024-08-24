@@ -45,10 +45,10 @@ function SearchPannel() {
   };
 
   const filterList: FilterItem[] = [
-    { type: "checkbox", cat: "electronics" },
-    { type: "checkbox", cat: "jewelery" },
-    { type: "checkbox", cat: "men's clothing" },
-    { type: "checkbox", cat: "women's clothing" },
+    { type: "checkbox", cat: "Electronics" },
+    { type: "checkbox", cat: "Jewelery" },
+    { type: "checkbox", cat: "Men's clothing" },
+    { type: "checkbox", cat: "Women's clothing" },
   ];
 
   const handleCategoryChange = (cat: string) => {
@@ -137,7 +137,7 @@ function SearchPannel() {
       </Stack>
 
       <Container
-        className=" p-4 shadow d-md-none"
+        className="pe-5 shadow d-md-none"
         style={{
           backgroundColor: "#FFFFFF",
           // width: "100vw",
