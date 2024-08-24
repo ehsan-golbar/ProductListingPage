@@ -34,7 +34,7 @@ function SortPannel() {
           // borderRadius: "10px",
           position: "fixed",
           top: "50px",
-          // right: "0px",
+          // left: "a",
           zIndex: "999",
           // backdropFilter: "blur(10px)",
         }}
@@ -100,7 +100,7 @@ function SortPannel() {
 
       <Stack
         direction="horizontal"
-        className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-md-none"
+        // className="d-flex justify-content-start align-items-center mt-3 rounded-3 mx-sm-3 d-md-none"
         gap={3}
         style={{
           // width: "80%",
