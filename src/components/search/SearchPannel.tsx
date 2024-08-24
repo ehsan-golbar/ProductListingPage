@@ -156,17 +156,19 @@ function SearchPannel() {
         <Row>
           <p style={{ fontWeight: "bold", fontSize: "20px" }}>Category</p>
           <Form style={{ marginLeft: "1.5rem" }} className="d-flex gap-4">
-            {filterList.map((item) => (
-              <div key={`default-${item.cat}`} className="mb-3">
-                <Form.Check // prettier-ignore
-                  type={item.type}
-                  id={`default-${item.cat}`}
-                  label={`${item.cat}`}
-                  onChange={() => handleCategoryChange(item.cat)}
-                  style={{ fontWeight: "bold" }}
-                />
-              </div>
-            ))}
+            <Row xs={2} sm={4}>
+              {filterList.map((item) => (
+                <div key={`default-${item.cat}`} className="mb-3">
+                  <Form.Check // prettier-ignore
+                    type={item.type}
+                    id={`default-${item.cat}`}
+                    label={`${item.cat}`}
+                    onChange={() => handleCategoryChange(item.cat)}
+                    style={{ fontWeight: "bold" }}
+                  />
+                </div>
+              ))}
+            </Row>
           </Form>
         </Row>
 
