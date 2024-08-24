@@ -135,6 +135,8 @@ function Home() {
       if (sortedProduct === null) {
         setFilteredProducts(filteredProduct);
       } else setFilteredProducts(sortedProduct);
+
+      setCurrentPage(1);
     });
   }, [
     selectedCategories,
