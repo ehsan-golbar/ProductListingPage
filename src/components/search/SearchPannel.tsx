@@ -41,10 +41,10 @@ function SearchPannel() {
   };
 
   const filterList: FilterItem[] = [
-    { type: "checkbox", cat: "Electronics" },
-    { type: "checkbox", cat: "Jewelery" },
-    { type: "checkbox", cat: "Men's clothing" },
-    { type: "checkbox", cat: "Women's clothing" },
+    { type: "checkbox", cat: "electronics" },
+    { type: "checkbox", cat: "jewelery" },
+    { type: "checkbox", cat: "men's clothing" },
+    { type: "checkbox", cat: "women's clothing" },
   ];
 
   const handleCategoryChange = (cat: string) => {
@@ -74,7 +74,9 @@ function SearchPannel() {
                 <Form.Check // prettier-ignore
                   type={item.type}
                   id={`default-${item.cat}`}
-                  label={`${item.cat}`}
+                  label={`${item.cat.charAt(0).toUpperCase()}${item.cat.slice(
+                    1
+                  )}`}
                   onChange={() => handleCategoryChange(item.cat)}
                   style={{ fontWeight: "bold" }}
                 />
@@ -141,7 +143,9 @@ function SearchPannel() {
                   <Form.Check // prettier-ignore
                     type={item.type}
                     id={`default-${item.cat}`}
-                    label={`${item.cat}`}
+                    label={`${item.cat.charAt(0).toUpperCase}${
+                      item.cat.slice(1)[1]
+                    }`}
                     onChange={() => handleCategoryChange(item.cat)}
                     style={{ fontWeight: "bold" }}
                   />
