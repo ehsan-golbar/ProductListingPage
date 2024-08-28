@@ -180,7 +180,13 @@ function Home() {
   return (
     <>
       <Container style={{ marginTop: "8rem" }} className="d-none d-md-block">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <Row className="d-flex justify-content-center align-items-start  mb-4">
+              <p className="bold">Loading...</p>
+            </Row>
+          }
+        >
           {productChunks &&
             productChunks.map((chunk) => (
               <Row
