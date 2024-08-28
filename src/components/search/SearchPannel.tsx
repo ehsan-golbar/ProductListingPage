@@ -1,4 +1,4 @@
-import { Container, Form, Row, Stack } from "react-bootstrap";
+import { Form, Row, Stack } from "react-bootstrap";
 import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import { AppDispatch, RootState } from "../../store/Store";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,7 +71,7 @@ function SearchPannel() {
           <Form style={{ marginLeft: "1.5rem" }}>
             {filterList.map((item) => (
               <div key={`default-${item.cat}`} className="mb-3">
-                <Form.Check // prettier-ignore
+                <Form.Check
                   type={item.type}
                   id={`default-${item.cat}`}
                   label={`${item.cat.charAt(0).toUpperCase()}${item.cat.slice(
@@ -120,14 +120,14 @@ function SearchPannel() {
         </Stack>
       </Stack>
 
-      <Container
-        className="pe-5 shadow d-md-none"
+      <Stack
+        className="pe-5 shadow d-md-none mt-4 mx-2"
         style={{
           backgroundColor: "#FFFFFF",
           maxWidth: "100%",
           borderRadius: "10px",
 
-          marginTop: "5rem",
+          // marginTop: "5rem",
         }}
       >
         <Row>
@@ -192,7 +192,7 @@ function SearchPannel() {
             />
           </Stack>
         </Row>
-      </Container>
+      </Stack>
     </>
   );
 }
