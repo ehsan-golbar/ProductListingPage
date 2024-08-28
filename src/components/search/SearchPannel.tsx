@@ -143,9 +143,9 @@ function SearchPannel() {
                   <Form.Check // prettier-ignore
                     type={item.type}
                     id={`default-${item.cat}`}
-                    label={`${item.cat.charAt(0).toUpperCase}${
-                      item.cat.slice(1)[1]
-                    }`}
+                    label={`${item.cat.charAt(0).toUpperCase()}${item.cat.slice(
+                      1
+                    )}`}
                     onChange={() => handleCategoryChange(item.cat)}
                     style={{ fontWeight: "bold" }}
                   />
